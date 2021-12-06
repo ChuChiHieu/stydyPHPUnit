@@ -34,6 +34,7 @@ steps:
     SqlInline: 'source database/demo_sql.sql'
     ServerName: 'localhost'
     SqlUsername: 'forge'
+    SqlPassword: ''
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
