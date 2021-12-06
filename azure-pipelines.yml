@@ -55,7 +55,8 @@ steps:
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
 
-- script: php artisan migrate
+- script: |
+    php artisan migrate --force
   displayName: 'Running migrate'
 
 - script: |
