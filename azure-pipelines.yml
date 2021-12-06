@@ -32,7 +32,7 @@ steps:
   inputs:
     TaskNameSelector: 'InlineSqlTask'
     SqlInline: 'source database/demo_sql.sql'
-    ServerName: 'localhost'
+    ServerName: 'forge'
     SqlUsername: 'forge'
     SqlPassword: 'forge'
 
