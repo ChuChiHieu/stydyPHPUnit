@@ -54,6 +54,11 @@ steps:
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
+
 - script: |
+    php artisan migrate
+  displayName: 'Running migrate'
+
+  - script: |
     vendor/bin/phpunit tests/Feature/DemoTestSeeder.php
   displayName: 'Running Unit Tests'
