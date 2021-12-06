@@ -23,6 +23,35 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
+- script: |
+    mysql --version
+    sudo service mysql start
+  displayName: 'MySQL Version'
+
+- task: MysqlDeploymentOnMachineGroup@1
+  inputs:
+    TaskNameSelector: 'InlineSqlTask'
+    SqlInline: 'SET GLOBAL sql_mode=''NO_ENGINE_SUBSTITUTION'''
+    ServerName: 'localhost'
+    SqlUsername: 'root'
+    SqlPassword: 'root'
+
+- task: MysqlDeploymentOnMachineGroup@1
+  inputs:
+    TaskNameSelector: 'InlineSqlTask'
+    SqlInline: 'SELECT @@sql_mode'
+    ServerName: 'localhost'
+    SqlUsername: 'root'
+    SqlPassword: 'root'
+
+- task: MysqlDeploymentOnMachineGroup@1
+  inputs:
+    TaskNameSelector: 'InlineSqlTask'
+    SqlInline: 'source database/demo_sql.sql'
+    ServerName: 'localhost'
+    SqlUsername: 'root'
+    SqlPassword: 'root'
+
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
 - script: |
